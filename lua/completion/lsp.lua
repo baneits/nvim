@@ -69,7 +69,7 @@ vim.lsp.config("nixd", {
 			options = {
 				nixos = {
 					-- Change the path to your flake config if needed
-					-- expr = '(builtins.getFlake "~/config").nixosConfigurations.' .. lowerHostname .. ".options",
+					expr = '(builtins.getFlake "~/config").nixosConfigurations.' .. lowerHostname .. ".options",
 				},
 			},
 		},
