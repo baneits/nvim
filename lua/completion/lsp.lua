@@ -54,6 +54,9 @@ vim.lsp.config("lua_ls", {
 	},
 })
 
+local hostname = vim.uv.os_gethostname()
+local lowerHostname = string.lower(hostname)
+
 vim.lsp.config("nixd", {
 	cmd = { "nixd" },
 	filetypes = { "nix" },

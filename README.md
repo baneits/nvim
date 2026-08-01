@@ -56,3 +56,9 @@ require("nvim-treesitter").install({
     -- Add your language here
 })
 ```
+
+### Potential issues
+If you do not plan to use nixpkgs comment the following line in 'lua/completion/lsp.lua'
+```lua
+expr = '(builtins.getFlake "~/config").nixosConfigurations.' .. lowerHostname .. ".options",
+```
