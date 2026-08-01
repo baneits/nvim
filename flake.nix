@@ -17,7 +17,10 @@
       packages = forAllSystems (
       pkgs: let
         pkgList = with pkgs; [
-        # install your plugins here
+        # LSPs
+        
+        # tools
+
         ];
       in {
         # Define the default package for this system
