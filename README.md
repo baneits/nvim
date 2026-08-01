@@ -21,3 +21,38 @@ You can clone this repo to `.config/nvim`, and then use a nix-shell to use a loc
 bundled binary. This is useful if you want to make modifications to the config and don't want to wait for a push
 and rebuild to see your changes. This is the only reason I kept the main config in lua, other than having to rewrite
 it in general.
+
+### Addidng a new language
+Add your language in these places
+
+'flake.nix'
+```nix
+pkgList = with pkgs; [
+  # LSPs
+  # Add your lsp here
+
+  # Formatting tools
+  # Add your formatting tool here
+]
+```
+
+'lua/completion/conform.lua'
+```lua
+formatters_by_ft = {
+    LanguageName = { "formatting tool" },
+},
+```
+
+'lua/completion/lsp.lua'
+```lua
+vim.lsp.enable({
+    -- Add your language here
+})
+```
+
+'lua/completion/treesitter.lua'
+```lua
+require("nvim-treesitter").install({
+    -- Add your language here
+})
+```

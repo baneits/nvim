@@ -6,6 +6,7 @@ require("keymaps")
 require("commands")
 
 -- Import plugins
-require("completion.treesitter")
+require("completion.conform")
 require("completion.lsp")
+require("completion.treesitter")
 require("utils.mini")

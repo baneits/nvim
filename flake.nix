@@ -18,7 +18,17 @@
       pkgs: let
         pkgList = with pkgs; [
           # LSPs
+          lua-language-server
+          python313Packages.python-lsp-server
+          nixd
+          rust-analyzer
         
+          # Formatting tools
+          stylua
+          black
+          alejandra
+          rustfmt
+
           # tools
           gcc # required for nvim.treesitter
           tree-sitter # required for nvim.treesitter
