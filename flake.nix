@@ -17,10 +17,11 @@
       packages = forAllSystems (
       pkgs: let
         pkgList = with pkgs; [
-        # LSPs
+          # LSPs
         
-        # tools
-
+          # tools
+          gcc # required for nvim.treesitter
+          tree-sitter # required for nvim.treesitter
         ];
       in {
         # Define the default package for this system
