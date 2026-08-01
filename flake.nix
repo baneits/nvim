@@ -35,6 +35,7 @@
 
           # Tools for telescope
           ripgrep
+          fd
           fzf
         ];
       in {
