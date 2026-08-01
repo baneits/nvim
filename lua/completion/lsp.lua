@@ -83,14 +83,8 @@ vim.lsp.config("nixd", {
 require("blink.cmp").setup({
 
 	fuzzy = { implementation = "lua" },
-
-	signature = {
-		enabled = false,
-	},
-
 	completion = {
 		trigger = {
-			show_on_insert = true,
 			show_on_trigger_character = true,
 			show_on_keyword = true,
 			show_on_backspace = true,
@@ -108,17 +102,24 @@ require("blink.cmp").setup({
 			auto_show_delay_ms = 100,
 		},
 	},
-
-	-- Keymaps
 	keymap = {
+		preset = "none",
+		["<C-Space>"] = { "show", "hide" },
+		["<CR>"] = { "accept", "fallback" },
+		["<C-j>"] = { "select_next", "snippet_forward", "fallback" },
+		["<C-k>"] = { "select_next", "snippet_forward", "fallback" },
 		["<Tab>"] = { "select_next", "snippet_forward", "fallback" },
+		["<S-Tab>"] = { "select_prev", "snippet_backward", "fallback" },
 	},
 	sources = {
-		default = {
-			"lsp", -- (Equivalent to cmp-nvim-lsp)
-			"snippets", -- (Handled by the snippets config, replaces cmp_luasnip source)
-			"buffer", -- (Equivalent to cmp-buffer)
-			"path", -- (Equivalent to cmp-path)
+		default = { "lsp", "snippets", "buffer", "path" },
+		providers = {
+			-- lazydev = {
+			-- 	name = "LazyDev",
+			-- 	module = "lazydev.integrations.blink",
+			-- 	-- make lazydev completions top priority (see `:h blink.cmp`)
+			-- 	score_offset = 100,
+			-- },
 		},
 	},
 })

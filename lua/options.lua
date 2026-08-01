@@ -8,6 +8,7 @@ vim.opt.relativenumber = true
 vim.opt.tabstop = 2
 vim.opt.softtabstop = 2
 vim.opt.shiftwidth = 2
+vim.opt.smartindent = true
 vim.opt.autoindent = true
 vim.opt.expandtab = true
 
@@ -39,14 +40,6 @@ vim.opt.scrolloff = 8
 -- Appearance
 vim.opt.termguicolors = true
 vim.opt.signcolumn = "yes"
-
--- Highlight on yank
-vim.api.nvim_create_autocmd("TextYankPost", {
-	desc = "Highlight on yank",
-	callback = function()
-		vim.hl.on_yank({ higroup = "Visual", timeout = 200 })
-	end,
-})
 
 -- if performing an operation that would fail due to unsaved changes in the buffer (like `:q`),
 -- instead raise a dialog asking if you wish to save the current file(s)
