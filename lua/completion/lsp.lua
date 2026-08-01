@@ -2,6 +2,7 @@ vim.pack.add({
 	{ src = "https://github.com/neovim/nvim-lspconfig", name = "lspconfig" },
 	{ src = "https://github.com/saghen/blink.cmp", name = "blink" },
 	{ src = "https://github.com/saghen/blink.lib", name = "blink-lib" },
+	{ src = "https://github.com/folke/lazydev.nvim", name = "lazydev" },
 })
 
 -- Keybinds
@@ -37,11 +38,10 @@ vim.lsp.enable({
 	"rust_analyzer",
 })
 
+require("lazydev").setup({})
 vim.lsp.config("lua_ls", {
 	settings = {
 		Lua = {
-			-- Disable undefined global warning
-			diagnostics = { globals = { "vim" } },
 			-- Tell the server to let Neovim handle snippet expansion
 			completion = {
 				callSnippet = "Replace",
