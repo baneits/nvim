@@ -6,11 +6,7 @@
     nix-wrappers.url = "github:Birdeehub/nix-wrapper-modules";
   };
 
-  outputs = {
-    self,
-    nixpkgs,
-    ...
-  } @ inputs: let
+  outputs = {nixpkgs, ...} @ inputs: let
     # Define the systems you want to support
     supportedSystems = ["x86_64-linux" "aarch64-linux" "x86_64-darwin" "aarch64-darwin"];
 
