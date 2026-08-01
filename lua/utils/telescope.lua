@@ -1,0 +1,17 @@
+vim.pack.add({
+	{ src = "https://github.com/nvim-telescope/telescope.nvim", name = "telescope" },
+	{ src = "https://github.com/nvim-lua/plenary.nvim", name = "plenary" },
+})
+
+local builtin = require("telescope.builtin")
+vim.keymap.set("n", "<leader>fh", builtin.help_tags, { desc = "Search Help" })
+vim.keymap.set("n", "<leader>fk", builtin.keymaps, { desc = "Search Keymaps" })
+vim.keymap.set("n", "<leader>ff", builtin.find_files, { desc = "Search Files" })
+vim.keymap.set("n", "<leader>fs", builtin.builtin, { desc = "Search Select Telescope" })
+vim.keymap.set("n", "<leader>fw", builtin.grep_string, { desc = "Search current Word" })
+vim.keymap.set("n", "<leader>fg", builtin.live_grep, { desc = "Search by Grep" })
+vim.keymap.set("n", "<leader>fd", builtin.diagnostics, { desc = "Search Diagnostics" })
+vim.keymap.set("n", "<leader>fr", builtin.resume, { desc = "Search Resume" })
+vim.keymap.set("n", "<leader>fb", builtin.buffers, { desc = "Search buffers" })
+
+require("telescope").setup({})
