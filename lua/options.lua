@@ -1,6 +1,6 @@
 -- OPTIONS
 
--- Line numbers 
+-- Line numbers
 vim.opt.nu = true
 vim.opt.relativenumber = true
 
@@ -41,11 +41,11 @@ vim.opt.termguicolors = true
 vim.opt.signcolumn = "yes"
 
 -- Highlight on yank
-vim.api.nvim_create_autocmd('TextYankPost', {
-  desc = 'Highlight on yank',
-  callback = function()
-    vim.hl.on_yank({higroup = 'Visual', timeout = 200})
-  end,
+vim.api.nvim_create_autocmd("TextYankPost", {
+	desc = "Highlight on yank",
+	callback = function()
+		vim.hl.on_yank({ higroup = "Visual", timeout = 200 })
+	end,
 })
 
 -- if performing an operation that would fail due to unsaved changes in the buffer (like `:q`),

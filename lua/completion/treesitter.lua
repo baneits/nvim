@@ -5,8 +5,8 @@ require("nvim-treesitter").install({
 	"lua",
 	"markdown",
 	"markdown_inline",
-  "nix",
+	"nix",
 	"python",
-  "rust",
+	"rust",
 	"vim",
 })

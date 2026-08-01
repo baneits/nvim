@@ -1,4 +1,4 @@
-# NVIM For Voidfiles
+# NVIM for NixOS
 Built using vim.pack and lots of mini plugins
 
 ## Installation

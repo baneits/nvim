@@ -6,7 +6,11 @@
     nix-wrappers.url = "github:Birdeehub/nix-wrapper-modules";
   };
 
-  outputs = { self, nixpkgs, ... }@inputs: let
+  outputs = {
+    self,
+    nixpkgs,
+    ...
+  } @ inputs: let
     # Define the systems you want to support
     supportedSystems = ["x86_64-linux" "aarch64-linux" "x86_64-darwin" "aarch64-darwin"];
 
@@ -14,7 +18,7 @@
     # It imports nixpkgs for the system and passes the resulting 'pkgs' to the function 'f'
     forAllSystems = f: nixpkgs.lib.genAttrs supportedSystems (system: f (import nixpkgs {inherit system;}));
   in {
-      packages = forAllSystems (
+    packages = forAllSystems (
       pkgs: let
         pkgList = with pkgs; [
           # LSPs
@@ -22,24 +26,28 @@
           python313Packages.python-lsp-server
           nixd
           rust-analyzer
-        
+
           # Formatting tools
           stylua
           black
           alejandra
           rustfmt
 
-          # tools
-          gcc # required for nvim.treesitter
-          tree-sitter # required for nvim.treesitter
+          # Tools for nvim.treesitter
+          gcc
+          tree-sitter
+
+          # Tools for telescope
+          ripgrep
+          fzf
         ];
       in {
         # Define the default package for this system
         default = inputs.nix-wrappers.wrappers.neovim.wrap {
-        inherit pkgs;
-      
-        # I want to have my nvim config to be written in LUA so I tell nix-wrappers to take this repo as the config 
-        settings.config_directory = ./.;
+          inherit pkgs;
+
+          runtimePkgs = pkgList;
+          settings.config_directory = ./.;
         };
       }
     );
