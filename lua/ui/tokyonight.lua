@@ -3,6 +3,9 @@ vim.pack.add({
 	{ src = "https://github.com/tadaa/vimade", name = "vimade" },
 })
 
+require("tokyonight").setup({
+	transparent = true,
+})
 vim.cmd.colorscheme("tokyonight")
 
 require("vimade").setup({
