@@ -3,26 +3,34 @@ Built using vim.pack and lots of mini plugins
 
 ## Installation
 
-This config uses nix-wrapper-modules to forego needing to install dotfiles at all. This results in a cleaner,
-more consistent experience across systems, in order to make it available to a dendritic nix environment.
+This config uses nix-wrapper-modules to forego needing to install dotfiles at all. This results in a cleaner, more consistent experience across systems, in order to make it available to a dendritic nix environment.
 
 ### Trying
 To try the config:
 ```bash
-nix run .
+nix run https://github.com/baneits/nvim.git
 ```
 
 ### Installing
- TODO
+Add the input to your flake:
+```nix
+{
+  inputs = {
+    nvim-custom.url = "github.com:baneits/nvim";
+  }
+}
+```
+
+And then add the package to your system config:
+```nix
+inputs.nvim-custom.packages.${stdenv.hostPlatform.system}.default
+```
 
 ### Editing and Developing
 
-You can clone this repo to `.config/nvim`, and then use a nix-shell to use a local config instead of the provided
-bundled binary. This is useful if you want to make modifications to the config and don't want to wait for a push
-and rebuild to see your changes. This is the only reason I kept the main config in lua, other than having to rewrite
-it in general.
+You can clone this repo to `.config/nvim`, and then use a nix-shell to use a local config instead of the provided bundled binary. This is useful if you want to make modifications to the config and don't want to wait for a push and rebuild to see your changes. This is the main reason this config is separated from the nixos config repo.
 
-### Addidng a new language
+### Adding a new language
 Add your language in these places
 
 'flake.nix'
@@ -58,7 +66,7 @@ require("nvim-treesitter").install({
 ```
 
 ### Potential issues
-If you do not plan to use nixpkgs comment the following line in 'lua/completion/lsp.lua'
+If you do not plan to use nixpkgs remove the following line in 'lua/completion/lsp.lua'
 ```lua
 expr = '(builtins.getFlake "~/config").nixosConfigurations.' .. lowerHostname .. ".options",
 ```
