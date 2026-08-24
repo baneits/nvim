@@ -42,7 +42,9 @@
         # Define the default package for this system
         default = inputs.nix-wrappers.wrappers.neovim.wrap {
           inherit pkgs;
-
+          env = {
+            "CONFIG_ROOT" = ./.;
+          };
           runtimePkgs = pkgList;
           settings.config_directory = ./.;
         };
