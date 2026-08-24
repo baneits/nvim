@@ -3,6 +3,7 @@ vim.pack.add({
 	{ src = "https://github.com/saghen/blink.cmp", name = "blink" },
 	{ src = "https://github.com/saghen/blink.lib", name = "blink-lib" },
 	{ src = "https://github.com/folke/lazydev.nvim", name = "lazydev" },
+	{ src = "https://github.com/L3MON4D3/LuaSnip", name = "luasnip" },
 })
 
 -- Keybinds
@@ -80,28 +81,8 @@ vim.lsp.config("nixd", {
 })
 
 -- Completion setup
+require("blink.cmp").build():pwait()
 require("blink.cmp").setup({
-
-	fuzzy = { implementation = "lua" },
-	completion = {
-		trigger = {
-			show_on_trigger_character = true,
-			show_on_keyword = true,
-			show_on_backspace = true,
-		},
-		list = {
-			selection = {
-				preselect = false,
-				auto_insert = true,
-			},
-		},
-		menu = {
-			auto_show = true,
-			border = "rounded",
-			min_width = 35,
-			auto_show_delay_ms = 100,
-		},
-	},
 	keymap = {
 		preset = "none",
 		["<C-Space>"] = { "show", "hide" },
@@ -111,15 +92,22 @@ require("blink.cmp").setup({
 		["<Tab>"] = { "select_next", "snippet_forward", "fallback" },
 		["<S-Tab>"] = { "select_prev", "snippet_backward", "fallback" },
 	},
-	sources = {
-		default = { "lsp", "snippets", "buffer", "path" },
-		providers = {
-			-- lazydev = {
-			-- 	name = "LazyDev",
-			-- 	module = "lazydev.integrations.blink",
-			-- 	-- make lazydev completions top priority (see `:h blink.cmp`)
-			-- 	score_offset = 100,
-			-- },
+	completion = {
+		menu = {
+			min_width = 35,
+			border = "rounded",
+			auto_show = true,
 		},
 	},
+	sources = { default = { "lsp", "snippets", "buffer", "path" } },
+	fuzzy = { implementation = "prefer_rust" },
+	snippets = {
+		expand = function(snippet)
+			require("luasnip").lsp_expand(snippet)
+		end,
+	},
 })
+
+vim.lsp.config["*"] = {
+	capabilities = require("blink-cmp").get_lsp_capabilities(),
+}
