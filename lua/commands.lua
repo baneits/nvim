@@ -1,5 +1,9 @@
+-- =============================================================================
 -- Autocommands
+-- =============================================================================
+
 local augroup = vim.api.nvim_create_augroup("userConfig", { clear = true })
+
 vim.api.nvim_create_autocmd("TextYankPost", {
 	desc = "Highlight on yank",
 	group = augroup,

@@ -15,3 +15,5 @@ require("mini.notify").setup({
 
 -- Icon provider
 require("mini.icons").setup()
+
+require("mini.indentscope").setup()

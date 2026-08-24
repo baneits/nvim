@@ -1,10 +1,6 @@
 vim.g.mapleader = vim.keycode("<Space>") -- equivalent to vim.g.mapleader = ' '
 
--- Restarting configuration
-vim.keymap.set("n", "<leader>re", "<cmd>restart<cr>", { desc = "Restart config" })
-
--- Clear highlights on search when pressing <Esc> in normal mode
-vim.keymap.set("n", "<Esc>", ":nohlsearch<CR>", { desc = "Clear serch highlighting", silent = true })
+vim.keymap.set("n", "<Esc>", ":nohlsearch<CR>", { desc = "Clear search highlighting", silent = true })
 
 -- Open file explorer
 vim.keymap.set("n", "<leader>cd", vim.cmd.Ex, { desc = "Open netrw file explorer" })
@@ -28,6 +24,7 @@ vim.keymap.set("v", "<A-j>", ":m '>+1<CR>gv=gv", { desc = "Moves selection down"
 vim.keymap.set("v", "<A-k>", ":m '<-2<CR>gv=gv", { desc = "Moves selection up" })
 
 vim.keymap.set("n", "J", "mzJ`z", { desc = "Join lines and keep cursor position" })
+
 -- Control indentation visual selection
 vim.keymap.set("v", "<", "<gv", { desc = "Unindent and keep selection" })
 vim.keymap.set("v", ">", ">gv", { desc = "Indent and keep selection" })
