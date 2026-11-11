@@ -37,6 +37,9 @@
           ripgrep
           fd
           fzf
+
+          # tool for blink.cmp
+          cargo
         ];
       in {
         # Define the default package for this system
