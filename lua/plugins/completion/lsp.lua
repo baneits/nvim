@@ -100,7 +100,7 @@ require("blink.cmp").setup({
 		},
 	},
 	sources = { default = { "lsp", "snippets", "buffer", "path" } },
-	fuzzy = { implementation = "prefer_rust" },
+	fuzzy = { implementation = "rust" },
 	snippets = {
 		expand = function(snippet)
 			require("luasnip").lsp_expand(snippet)
